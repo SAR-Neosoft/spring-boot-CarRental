@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CAR</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">CarRentals</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/cars}">View Cars</a>
+      </li>
+      
+        <li class="nav-item">
+        <a class="nav-link" th:href="@{/bookedcarsBySpid}">View Bookings</a>
+      </li>
+      
+       <li class="nav-item">
+      <form  th:action="@{/invalidate/session/logout}" method="post">		
+		<input class="nav-link" type="submit" value="Logout" style="background-color: #343a40"/>	
+	</form>
+      
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Add New Car </h1>
+				<div class = "card-body">
+				
+				
+					<form th:action="@{/bookcar/{id}(id=${spid})}" th:object = "${booking}" method="POST">
+						<div class ="form-group">
+							<label> Customer Name </label>
+							<input
+							type = "text"
+							name = "cust_name"
+							th:field = "*{cust_name}"
+							class = "form-control"
+							placeholder="Enter Name" 
+							required="required"
+							/>
+						</div>
+						
+						
+							<div class ="form-group">
+							<label> Mobile </label>
+							<input
+							type = "text"
+							name = "cust_mobile"
+							th:field = "*{cust_mobile}"
+							class = "form-control"
+							placeholder="Enter Mobile Number" 
+							required="required"
+							/>
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+					
+						<div class ="form-group">
+							<input
+							type = "hidden"
+							name = "return_status"
+							th:field = "*{return_status}"
+							value="0"
+							class = "form-control"
+							placeholder="Status" 
+							/>
+						</div>
+						
+			 	<div class ="form-group">
+							<input
+							type = "text"
+							name = "car"
+							th:field = "*{car}"
+							value="1"
+							class = "form-control"
+							placeholder="Car_id" 
+							/>
+						</div> -->	
+					
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+							Book Car
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

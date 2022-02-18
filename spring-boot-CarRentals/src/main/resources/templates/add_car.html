@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CAR</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">CarRentals</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/cars}">View Cars</a>
+      </li>
+      
+       <li class="nav-item">
+        <a class="nav-link" th:href="@{/bookedcarsBySpid}">View Bookings</a>
+      </li>
+       <li class="nav-item">
+      <form  th:action="@{/invalidate/session/logout}" method="post">		
+		<input class="nav-link" type="submit" value="Logout" style="background-color: #343a40"/>	
+	</form>
+      
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Add New Car </h1>
+				<div class = "card-body">
+				
+				
+					<form th:action="@{/cars/{id}(id=${spid})}" th:object = "${car}" method="POST">
+						<div class ="form-group">
+							<label> Car Name </label>
+							<input
+							type = "text"
+							name = "car_name"
+							th:field = "*{car_name}"
+							class = "form-control"
+							placeholder="Enter Name" 
+							required="required"
+							/>
+						</div>
+						
+							
+						<div class ="form-group">
+							<label> Car Brand</label> 
+							<select class="form-control"
+								name="car_brand" th:field="*{car_brand}" id="car_brand"
+								required="required">
+								<option value="Maruthi Suzuki">Maruthi Suzuki</option>
+								<option value="Hundai">Hundai</option>
+								<option value="Tata">Tata</option>
+								<option value="Mercedes">Mercedes</option>
+								<option value="Audi">Audi</option>
+							</select> 
+							
+							<!-- <input type="text" name="email" th:field="*{email}" class="form-control" placeholder="Enter Email" />  -->
+								
+							
+						</div>
+					
+						
+						<div class ="form-group">
+							<label for="color">Color</label> 
+							<select class="form-control"
+								name="color" th:field="*{color}" id="color" required="required">
+								<option value="White">White</option>
+								<option value="Black">Black</option>
+								<option value="Blue">Blue</option>
+								<option value="Grey">Grey</option>
+								<option value="Red">Red</option>
+							</select>
+						</div>
+						
+						
+							<div class ="form-group">
+							<label for="capacity">Seaters</label>
+							 <select
+								class="form-control" name="capacity" th:field="*{capacity}" id="capacity"
+								required="required">
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+							</select>
+						</div>
+						
+						
+							<div class ="form-group">
+							<label>  Plate Number </label>
+							<input
+							type = "text"
+							name = "plate_number"
+							th:field = "*{plate_number}"
+							class = "form-control"
+							placeholder="Enter Plate Number" 
+							/>
+						</div>
+						
+						
+							<div class ="form-group">
+							<label>  Rate/day </label>
+							<input
+							type = "text"
+							name = "rate"
+							th:field = "*{rate}"
+							class = "form-control"
+							placeholder="Enter Rate" 
+							/>
+						</div>
+						
+						
+						
+							<div class ="form-group">
+							
+							<input
+							type = "hidden"
+							name = "quantity"
+							value="1"
+							th:field = "*{quantity}"
+							 
+							class = "form-control"
+							
+							/>
+						</div>
+						
+					
+						<div class ="form-group">
+							<input
+							type = "hidden"
+							name = "status"
+							th:field = "*{status}"
+							value="0"
+							class = "form-control"
+							placeholder="Status" 
+							/>
+						</div>
+						
+				<!-- 	<div class ="form-group">
+							<input
+							type = "hidden"
+							name = "serviceProvider"
+							th:field = "*{serviceProvider}"
+							value="1"
+							class = "form-control"
+							placeholder="sp_id" 
+							/>
+						</div> -->	
+					
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Add Car
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
